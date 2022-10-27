@@ -37,15 +37,10 @@ public class GroupCreationsTests {
     fillGroupForm(new GroupData("test1", "test2", "test3"));
     submitGroupCreation();
     returnToGroupPage();
-    logout();
   }
 
   private void logout() {
     wd.findElement(By.linkText("Logout")).click();
-    //    wd.findElement(By.name("user")).clear();
-    //    wd.findElement(By.name("user")).sendKeys("admin");
-    //    wd.findElement(By.name("pass")).clear();
-    //    wd.findElement(By.name("pass")).sendKeys("secret");
   }
 
   private void returnToGroupPage() {
@@ -79,6 +74,7 @@ public class GroupCreationsTests {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logout();
     wd.quit();
   }
 
