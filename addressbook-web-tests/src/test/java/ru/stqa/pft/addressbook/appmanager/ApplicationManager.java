@@ -8,8 +8,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.Browser;
 
-import java.time.Duration;
-
 public class ApplicationManager {
   WebDriver wd;
   private SessionHelper sessionHelper;
@@ -31,7 +29,7 @@ public class ApplicationManager {
     } else if (browser.equals(Browser.IE.browserName())) {
       wd = new InternetExplorerDriver();
     }
-    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); //задержка для проверки браузером
     js = (JavascriptExecutor) wd;
     wd.get("http://localhost/addressbook/index.php");
     groupHelper = new GroupHelper(wd);
