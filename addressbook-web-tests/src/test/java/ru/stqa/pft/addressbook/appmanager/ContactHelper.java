@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase {
 //    click(By.id("1"));
 //  }
 
-  public void editContact() {
+  public void initContactEdition() {
     click(By.xpath("//img[@alt='Edit']"));
   }
 
@@ -55,6 +55,21 @@ public class ContactHelper extends HelperBase {
 
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+  }
+
+  public void createContact(ContactData contact) {
+    initContactCreation();
+    fillContactForm(contact, true);
+    submitContactCreation();
+    returnHomePage();
+  }
+
+  private void returnHomePage() {
+      click(By.linkText("home"));
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 
 //  public void submitContactDeletion() {
