@@ -10,6 +10,7 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
     app.getNavigationHelper().gotoGroupPage();
     int before = app.getGroupHelper().getGroupCount();
+
     if (! app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
@@ -18,6 +19,7 @@ public class GroupModificationTests extends TestBase {
     app.getGroupHelper().fillGroupForm(new GroupData("test1", "test2", "test3"));
     app.getGroupHelper().submitGroupModifocation();
     app.getGroupHelper().returnToGroupPage();
+
     int after = app.getGroupHelper().getGroupCount();
     Assert.assertEquals(after, before);
   }
