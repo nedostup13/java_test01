@@ -24,7 +24,7 @@ public class ContactDeletionTests extends TestBase {
     app.getNavigationHelper().gotoHomePage();
     int before = app.getContactHelper().getContactCount(); //считаем количество контактов до удаления
 
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before - 1); // выбираем последний контакт из списка
     app.getContactHelper().deleteContact();
     app.getNavigationHelper().gotoHomePage();
 

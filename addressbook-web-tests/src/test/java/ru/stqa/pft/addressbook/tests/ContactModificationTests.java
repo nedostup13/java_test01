@@ -15,14 +15,16 @@ public class ContactModificationTests extends TestBase {
     }
 
     app.getNavigationHelper().gotoHomePage();
-    int before = app.getContactHelper().getContactCount(); //считаем количество контактов до модификации
-
-    if (! app.getContactHelper().isThereAContact()) { //и проверяем наличие контактов
+    if (! app.getContactHelper().isThereAContact()) { //проверяем наличие контактов на главной странице
       app.getContactHelper().createContact(new ContactData("testNameF", null, null,
               null, null, null, null, null, null, null,
               null, null, null)); //если нет ни одного контакта, то создаем его
     }
-    app.getContactHelper().initContactEdition();
+
+    app.getNavigationHelper().gotoHomePage();
+    int before = app.getContactHelper().getContactCount(); //считаем количество контактов до модификации
+
+    app.getContactHelper().initContactEdition(before - 1); // редактируем последний контакт из списка
     app.getContactHelper().fillContactForm(new ContactData("testNameF", "testNameM", "testNameL", "testAddress", "testPhoneH", "testPhoneM", "testPhoneW", "testPhoneF", "testMail1", "testMail2", "testMail3", "testAddress2", null), false);
     app.getContactHelper().submitContactEdition();
     app.getNavigationHelper().gotoHomePage();
