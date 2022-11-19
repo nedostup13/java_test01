@@ -2,7 +2,11 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
@@ -57,5 +61,17 @@ public class GroupHelper extends HelperBase {
 
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<GroupData> getGroupList() {
+    List<GroupData> groups = new ArrayList<GroupData>(); //создаем список, который будем заполнять
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group")); //получаем список всех объектов типа WebElement,
+    // т.е. находим все веб-элементы с тегом span и классом group
+    for (WebElement element : elements) { // цикл по каждому найденному элементу (переменная element "пробегает" по списку elements
+      String name = element.getText(); // из каждого найденного элемента получаем текст (имя группы)
+      GroupData group = new GroupData(name, null, null); // создаем объект типа GroupData, имя нам известно, а header и footer - нет
+      groups.add(group); // добавляем созданный объект в список
+    }
+    return groups;
   }
 }
