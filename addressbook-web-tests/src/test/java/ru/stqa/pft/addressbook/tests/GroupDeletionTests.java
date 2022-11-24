@@ -25,6 +25,9 @@ public class GroupDeletionTests extends TestBase {
 //    int after = app.getGroupHelper().getGroupCount();
     List<GroupData> after = app.getGroupHelper().getGroupList(); // теперь в переменной after будет тоже список, а не счетчик
     Assert.assertEquals(after.size(), before.size() - 1);
+
+    before.remove(before.size() - 1); //удаляем из списка элемент
+      Assert.assertEquals(before, after); //проверка двух списков целиком, чтобы убедиться, что группа корректно удалилась
   }
 
 }

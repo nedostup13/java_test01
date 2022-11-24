@@ -67,10 +67,11 @@ public class GroupHelper extends HelperBase {
     List<GroupData> groups = new ArrayList<GroupData>(); //создаем список, который будем заполнять
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group")); //получаем список всех объектов типа WebElement,
     // т.е. находим все веб-элементы с тегом span и классом group
-    for (WebElement element : elements) { // цикл по каждому найденному элементу (переменная element "пробегает" по списку elements
-      String name = element.getText(); // из каждого найденного элемента получаем текст (имя группы)
-      GroupData group = new GroupData(name, null, null); // создаем объект типа GroupData, имя нам известно, а header и footer - нет
-      groups.add(group); // добавляем созданный объект в список
+    for (WebElement element : elements) { //цикл по каждому найденному элементу (переменная element "пробегает" по списку elements
+      String name = element.getText(); //из каждого найденного элемента получаем текст (имя группы)
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")) ; //внутри элемента checkbox с тегом input ищем другой элемент с атрибутом value, при этом мы его переводим в число из строки
+      GroupData group = new GroupData(id, name, null, null); //создаем объект типа GroupData, id и имя нам известно, а header и footer - нет
+      groups.add(group); //добавляем созданный объект в список
     }
     return groups;
   }
